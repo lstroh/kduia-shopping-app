@@ -61,14 +61,15 @@ export const AppReducer = (state, action) => {
 
 // 1. Sets the initial state when the app loads
 const initialState = {
-    expenses: [
-        { id: "Shirt", name: 'Shirt', quantity: 0, unitprice: 500 },
-        { id: "Jeans", name: 'Jeans', quantity: 0, unitprice: 300 },
-        { id: "Dress", name: 'Dress', quantity: 0, unitprice: 400 },
-        { id: "Dinner set", name: 'Dinner set', quantity: 0, unitprice: 600 },
-        { id: "Bags", name: 'Bags', quantity: 0, unitprice: 200 },
+    allocation: [
+        { department: "Marktring", budget: 50 },
+        { department: "Finance", budget: 300 },
+        { department: "Sales", budget: 70 },
+        { department: "HR", budget: 40 },
+        { department: "IT", budget: 500 },
     ],
-    Location: '£'
+    Location: '£',
+    maxBudget: 2000
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
@@ -80,16 +81,19 @@ export const AppProvider = (props) => {
     // 4. Sets up the app state. takes a reducer, and an initial state
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    const totalExpenses = state.expenses.reduce((total, item) => {
-        return (total = total + (item.unitprice*item.quantity));
+    const totalBudget = state.allocation.reduce((total, item) => {
+        return (total = total + (item.budget));
     }, 0);
-state.CartValue = totalExpenses;
+state.totalBudget = totalBudget;
+state.avilableBudget = state.maxBudget - totalBudget;
 
     return (
         <AppContext.Provider
             value={{
-                expenses: state.expenses,
-                CartValue: state.CartValue,
+                allocation: state.allocation,
+                totalBudget: state.totalBudget,
+                avilableBudget: state.avilableBudget,
+                maxBudget: state.maxBudget,
                 dispatch,
                 Location: state.Location
             }}
