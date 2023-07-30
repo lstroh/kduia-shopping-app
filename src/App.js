@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import { AppProvider } from './context/AppContext';
-import CartValue from './components/CartValue';
+import BudgetValue from './components/BudgetValue';
+import RemainBudget from './components/RemainBudget';
+import SpentBudget from './components/SpentBudget';
 import ExpenseList from './components/ExpenseList';
 import ItemSelected from './components/ItemSelected';
 import Location from './components/Location';
@@ -12,10 +14,16 @@ const App = () => {
     return (
         <AppProvider>
             <div className='container'>
-                <h1 className='mt-3'>Shopping App</h1>
+                <h1 className='mt-3'>Company's Budget Allocation</h1>
                 <div className='row mt-3'> 
                     <div className='col-sm'>
-                        <CartValue />
+                        <BudgetValue />
+                    </div>
+                    <div className='col-sm'>
+                        <RemainBudget />
+                    </div>
+                    <div className='col-sm'>
+                        <SpentBudget />
                     </div>
                     <div className='col-sm'>
                         <Location />
@@ -24,13 +32,13 @@ const App = () => {
                 <h3 className='mt-3'>Shopping Cart</h3>
                 <div className='row '>
                     <div className='col-sm'>
-                        <ExpenseList />
+                        ExpenseList
                     </div>
                 </div>
                 <h3 className='mt-3'>Add Items</h3>
                 <div className='row mt-3'>
                     <div className='col-sm'>
-                        <ItemSelected/>
+                        ItemSelected
                     </div>
                 </div>
             </div>
